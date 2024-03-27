@@ -11,10 +11,16 @@
             {
             <ol>
                 <li class="list-group-item list-group-item-action">
-                    @item.CategoryID.@item.CategoryName | 
-                    
-                    @Html.ActionLink("Delete","Delete",new {cid = item.CategoryID})
+                    @item.CategoryID.@item.CategoryName 
+
+                    @if(Convert.ToInt32(Session["CurrentUserID"]) == 1)
+                    {
+                        <span class="white-badge">
+                       @Html.ActionLink("Delete", "Delete", new { cid = item.CategoryID })
+                        </span>
+                    }
                  
+
                 </li>
              </ol>
             }
