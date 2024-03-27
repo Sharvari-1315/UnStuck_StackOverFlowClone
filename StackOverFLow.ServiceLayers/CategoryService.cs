@@ -13,7 +13,7 @@ namespace StackOverFLow.ServiceLayers
 {
     public interface ICategoryService
     {
-        void InsertCategory(CategoryViewModel cvm);
+        void InsertCategory(NewCategoryViewModel cvm);
         void UpdateCategory(CategoryViewModel cvm);
         void DeleteCategory(int cid);
         List<CategoryViewModel> GetCategories();
@@ -27,11 +27,11 @@ namespace StackOverFLow.ServiceLayers
             cr = new CategoryRepository();
         }
 
-        public void InsertCategory(CategoryViewModel cvm)
+        public void InsertCategory(NewCategoryViewModel ncvm)
         {
-            var config = new MapperConfiguration(cfg => { cfg.CreateMap<CategoryViewModel, Category>(); cfg.IgnoreUnmapped(); });
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<NewCategoryViewModel, Category>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
-            Category c = mapper.Map<CategoryViewModel, Category>(cvm);
+            Category c = mapper.Map<NewCategoryViewModel, Category>(ncvm);
             cr.InsertCategory(c);
         }
 

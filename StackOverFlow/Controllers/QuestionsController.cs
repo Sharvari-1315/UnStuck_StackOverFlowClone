@@ -94,5 +94,27 @@ namespace StackOverFlow.Controllers
                 return View();
             }
         }
+
+        public ActionResult Category()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [UserAuthorizationFilter]
+        public ActionResult Category(NewCategoryViewModel ncvm)
+        {
+           
+            if (ModelState.IsValid)
+            {
+                    this.cs.InsertCategory(ncvm);
+                return RedirectToAction("Categories", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
 }

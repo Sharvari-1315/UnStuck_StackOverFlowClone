@@ -12,6 +12,17 @@
                 <li class="list-group-item list-group-item-action">@item.CategoryID.@item.CategoryName</li>
             }
     </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            @if (Convert.ToInt32(Session["CurrentUserID"]) == 1 )
+            {
+                <a href="/questions/category" class="btn btn-primary">
+                    Add Category
+                </a>
+            }
+        </div>
+    </div>
 </div>
 
 <script>

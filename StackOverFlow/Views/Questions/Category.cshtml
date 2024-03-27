@@ -1,0 +1,42 @@
+﻿@model List<StackOverFlow.ViewModels.NewCategoryViewModel>
+
+@{
+    ViewBag.Title = "Category";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Create Category</h1>
+        <form class="needs-validation" novalidate="novalidate" action="/questions/category" method="post">
+            @Html.AntiForgeryToken()
+            <div class="form-row">
+                <div class="form-group col-sm-6">
+                    <label for="txtCategoryName">CategoryName</label>
+                    <textarea class="form-control" id="txtCategoryName" name="CategoryName" placeholder="Enter Category" required="required" pattern="^[a-zA-Z]*$" autofocus="autofocus"></textarea>
+                    <div class="valid-feedback">
+                        Looks Good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter question
+                    </div>
+                </div>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Add Category</button>
+            @Html.ValidationSummary()
+        </form>
+    </div>
+</div>
+
+
+<script>
+    $(document).on("submit", ".needs-validation", validate);
+    $(".needs-validation input").blur(validate);
+
+    function validate(event) {
+        if ($(".needs-validation")[0].checkValidity() == false) {
+            event.preventDefault();
+        }
+        $(".needs-validation")[0].classList.add("was-validated");
+    }
+</script>
