@@ -1,9 +1,11 @@
-﻿using StackOverFlow.ViewModels;
+﻿using StackOverFlow.CustomFilter;
+using StackOverFlow.ViewModels;
 using StackOverFLow.ServiceLayers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Filters;
 using System.Web.Mvc;
 
 namespace StackOverFlow.Controllers
@@ -52,6 +54,14 @@ namespace StackOverFlow.Controllers
             List<QuestionViewModel> questions = this.qs.GetQuestions().Where(temp => temp.QuestionName.ToLower().Contains(str.ToLower()) || temp.Category.CategoryName.ToLower().Contains(str.ToLower())).ToList();
             ViewBag.str = str;
             return View(questions);
+        }
+
+        
+        [UserAuthorizationFilter]
+        public ActionResult Delete(int cid)
+        {
+         this.cs.DeleteCategory(cid);
+            return RedirectToAction("Categories");
         }
     }
 }

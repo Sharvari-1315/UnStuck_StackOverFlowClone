@@ -5,11 +5,18 @@
 }
 
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-8">
         <h4>Categories</h4>
         @foreach(var item in Model)
             {
-                <li class="list-group-item list-group-item-action">@item.CategoryID.@item.CategoryName</li>
+            <ol>
+                <li class="list-group-item list-group-item-action">
+                    @item.CategoryID.@item.CategoryName | 
+                    
+                    @Html.ActionLink("Delete","Delete",new {cid = item.CategoryID})
+                 
+                </li>
+             </ol>
             }
     </div>
 
