@@ -57,7 +57,5 @@ namespace StackOverFlow.Repository
             List<Category> cat = db.Categories.Where(temp => temp.CategoryID == id).ToList();
             return cat;
         }
-
-
     }
 }

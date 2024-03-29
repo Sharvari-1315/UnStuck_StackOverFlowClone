@@ -9,17 +9,20 @@
         <h4>Categories</h4>
         @foreach(var item in Model)
             {
-            <ol>
-                <li class="list-group-item list-group-item-action">
-                    @item.CategoryID.@item.CategoryName 
 
-                    @if(Convert.ToInt32(Session["CurrentUserID"]) == 1)
-                    {
-                        <span class="white-badge">
-                       @Html.ActionLink("Delete", "Delete", new { cid = item.CategoryID })
+
+<ol>
+                <li class="list-group-item list-group-item-action">
+                        <span class="pink-badge">
+                            @Html.ActionLink(item.CategoryName, "ViewQuestions", new { cname = item.CategoryName }, new {@class = "my-custom-class"})
                         </span>
-                    }
-                 
+                        @if (Convert.ToInt32(Session["CurrentUserID"]) == 1)
+                        {
+                            <span class="white-badge">
+                                @Html.ActionLink("Delete", "Delete", new { cid = item.CategoryID }, new { @class = "my-custom-class" })
+                            </span>
+                        }
+                    
 
                 </li>
              </ol>

@@ -63,5 +63,12 @@ namespace StackOverFlow.Controllers
          this.cs.DeleteCategory(cid);
             return RedirectToAction("Categories");
         }
+
+        public ActionResult ViewQuestions(string cname)
+        {
+           cname = cname.Trim();
+           List<QuestionViewModel> questions = this.qs.GetQuestions().Where(temp => temp.Category.CategoryName.Contains(cname)).ToList();
+            return View(questions);
+        }
     }
 }
